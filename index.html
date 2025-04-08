@@ -3,25 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brownie</title>
+  <title>Brownie Inc.</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
+  <div class="top-bar">
     <h1>Brownie Inc.</h1>
-    <h3>About</h3>
-    <p>Welcome to Brownie Inc.! Brownie Inc. is an industry that specializes in all kinds of wonders. From your home to your work, Brownie Inc. helps to make your life easier.</p>
-    
-    <h3>Log In</h3>
-    <p>Sign in to use this website. Note that you can sign up for an account by emailing <u>teddyhorse77@gmail.com</u>.</p>
-    
-    <form>
-      <p>Username: <input type="text" /></p>
-      <p>Password: <input type="password" /></p>
-      <button>Log In</button>
-    </form>
   </div>
-  
-  <script src="script.js"></script>
+
+  <div class="content">
+    <!-- About Section -->
+    <div class="about">
+      <h3>About</h3>
+      <p>Welcome to Brownie Inc.! Brownie Inc. is an industry that specializes in all kinds of wonders. From your home to your work, Brownie Inc. helps to make your life easier.</p>
+    </div>
+
+    <!-- Login Box Section -->
+    <div id="login-box" class="login-box">
+      <h3>Log In</h3>
+      <p>Sign in to use this website. You can sign up by emailing <u>teddyhorse77@gmail.com</u>.</p>
+      <p>Username: <input id="username" type="text" /></p>
+      <p>Password: <input id="password" type="password" /></p>
+      <button onclick="checkLogin()">Log In</button>
+
+      <div id="error-message"></div>
+    </div>
+
+    <!-- Order Form (Hidden Initially) -->
+    <div id="order-form" class="order-form" style="display: none;">
+      <h3>What to Buy</h3>
+      <p>Enter the product and quantity you would like to order:</p>
+      
+      <form action="https://formspree.io/f/xjkypndq" method="POST">
+        <label for="product">Product:</label>
+        <input id="product" name="product" type="text" placeholder="e.g., Brownie Cake" required />
+        
+        <label for="quantity">Quantity:</label>
+        <input id="quantity" name="quantity" type="number" min="1" required placeholder="e.g., 2" />
+        
+        <button type="submit">Place Order</button>
+      </form>
+      
+      <div id="order-message"></div>
+    </div>
+  </div>
+
+  <script>
+    function checkLogin() {
+      // Get the username and password values
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      // Check if the username is Softie or Happy and the password is stufeabc
+      if ((username === "Softie" || username === "Happy" || username === "Larcury" || username === "Angela") && password === "stufeb123") {
+        // Hide login box and show order form after successful login
+        document.getElementById("login-box").style.display = "none";
+        document.getElementById("order-form").style.display = "block";
+      } else {
+        // Show an error message if the login details are incorrect
+        document.getElementById("error-message").innerHTML = "<p style='color:red;'>Incorrect username or password!</p>";
+      }
+    }
+  </script>
 </body>
 </html>
